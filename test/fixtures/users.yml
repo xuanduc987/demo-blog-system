@@ -5,3 +5,8 @@ duc:
   email: "xuanduc987@gmail.com"
   password_digest: <%= User.digest("password") %>
 
+other:
+  name: "Other Name"
+  email: "other@name.org"
+  password_digest: <%= User.digest("password") %>
+
