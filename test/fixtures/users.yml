@@ -10,3 +10,7 @@ other:
   email: "other@name.org"
   password_digest: <%= User.digest("password") %>
 
+thai:
+  name: "Thai"
+  email: "thai@mail.com"
+  password_digest: <%= User.digest("password") %>
