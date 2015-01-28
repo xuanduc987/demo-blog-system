@@ -1,29 +1,31 @@
-<% if logged_in? %>
-  <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <%= render 'shared/user_info' %>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-    <section class="entry_form">
-      <%= render 'shared/entry_form' %>
-    </section>
-  </aside>
+<div class="row">
+  <% if logged_in? %>
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+      <section class="entry_form">
+        <%= render 'shared/entry_form' %>
+      </section>
+    </aside>
+  <% else %>
+    <aside class="col-md-4">
+      <div class="center jumbotron">
+        <h1>Welcome to Demo Blog</h1>
+
+        <h2>
+          This is our mini blog home page. Join us to make a better world!
+        </h2>
+
+        <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+      </div>
+    </aside>
+  <% end %>
   <div class="col-md-8">
-    <h3>Micropost Feed</h3>
+    <h3>Entries Feed</h3>
     <%= render 'shared/feed' %>
   </div>
 </div>
-<% else %>
-  <div class="center jumbotron">
-  <h1>Welcome to the Yet Another Blog</h1>
-
-  <h2>
-    This is our mini blog home page. Join us to make a better world!
-  </h2>
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
-<% end %>
