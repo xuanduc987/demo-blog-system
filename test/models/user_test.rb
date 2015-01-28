@@ -68,4 +68,11 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "associated entries should be destroyed" do
+    @user.save
+    @user.entries.create!(title: "Test", content: "Just testing")
+    assert_difference 'Entry.count', -1 do
+      @user.destroy
+    end
+  end
 end

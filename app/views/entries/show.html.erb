@@ -1,0 +1,10 @@
+<% provide(:title, @entry.title) %>
+<div class="entry">
+  <%= link_to gravatar_for(@entry.user, size: 50), @entry.user %>
+  <span class="user"><%= link_to @entry.user.name, @entry.user %></span>
+  <span class="title"><h1><%= @entry.title %></h1></span>
+  <span class="content"><%= @entry.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(@entry.created_at) %> ago.
+  </span>
+</div>

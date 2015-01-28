@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
 
+  has_many :entries, dependent: :destroy
+
   has_secure_password
 
   validates :name, presence: true, length: { maximum: 50 }
