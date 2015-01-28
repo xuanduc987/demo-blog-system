@@ -34,4 +34,12 @@ class EntryTest < ActiveSupport::TestCase
   test "order should be most recent first" do
     assert_equal Entry.first, entries(:most_recent)
   end
+
+  test "associated comments should be deleted" do
+    @entry.save
+    @entry.comments.create!(content: "test", user_id: @user.id)
+    assert_difference "Comment.count", -1 do
+      @entry.destroy
+    end
+  end
 end

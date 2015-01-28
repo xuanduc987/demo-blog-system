@@ -2,20 +2,26 @@
   <%= link_to gravatar_for(entry.user, size: 50), entry.user %>
   <span class="user"><%= link_to entry.user.name, entry.user %></span>
   <span class="title"><h1><%= link_to entry.title, entry %></h1></span>
+  <span class="content">
   <% if entry.content.length > 800 %>
-    <span class="content">
       <%= truncate(entry.content,
                    length: 800, escape: false) %>
-      <%= link_to "See all", entry %>
-    </span>
+      <%= link_to " more", entry %>
   <% else %>
-      <span class="content"><%= entry.content %></span>
+      <%= entry.content %>
   <% end %>
+</span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(entry.created_at) %> ago.
     <% if current_user?(entry.user) %>
       <%= link_to "delete", entry, method: :delete,
                                        data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+  <span class="commentstats">
+    <%= pluralize(entry.comments.count, "comment") %>
+    <% if entry.comments.any? %>
+      <%= link_to " view all", entry %>
     <% end %>
   </span>
 </li>

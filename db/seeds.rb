@@ -19,16 +19,27 @@ User.create!(name: "Duc Nghiem Xuan", email: "xuanduc987@gmail.com",
                password_confirmation: password)
 end
 
-users = User.order(:created_at).take(6)
-50.times do
-  title = Faker::Lorem.sentence
-  content = Faker::Lorem.paragraph(55)
-  users.each { |user| user.entries.create!(title: title, content: content) }
-end
-
 users = User.all
 user  = users.first
 following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+users = User.order(:created_at).take(6)
+
+50.times do
+  title = Faker::Lorem.sentence
+  content = Faker::Lorem.paragraph(55)
+  comment = Faker::Lorem.sentence(5)
+  users.each do |u|
+    entry = u.entries.create!(title: title, content: content)
+    u.comments.create!(entry_id: entry.id, content: comment)
+    20.times do
+      u.followers.take(5).each do |follower|
+        follower.comments.create!(entry_id: entry.id,
+                                  content: Faker::Lorem.sentence(5))
+      end
+    end
+  end
+end

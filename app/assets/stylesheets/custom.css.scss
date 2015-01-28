@@ -247,18 +247,21 @@ input {
 }
 
 /* entries */
-
 .entries, .entry {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+  .content {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 1.5em;
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
   }
-  .user {
-    margin-top: 5em;
-    padding-top: 0;
-  }
+}
+
+.comments {
   .content {
     display: block;
     margin-left: 60px;
@@ -266,6 +269,27 @@ input {
       display: block;
       padding: 5px 0;
     }
+  }
+}
+
+.entries, .entry, .comments {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .h1 {
+    font-size: 2.2em;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .commentstats {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px
   }
   .timestamp {
     color: $gray-light;

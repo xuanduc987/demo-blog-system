@@ -6,5 +6,22 @@
   <span class="content"><%= @entry.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(@entry.created_at) %> ago.
+    <% if current_user?(@entry.user) %>
+      <%= link_to "delete", @entry, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
   </span>
 </div>
+<br>
+<br>
+<% if can_comment_on? @entry %>
+  <section class="comment_form">
+    <%= render 'shared/comment_form' %>
+  </section>
+<% end %>
+<% if @comments.any? %>
+  <ol class="comments">
+    <%= render @comments %>
+  </ol>
+  <%= will_paginate @comments %>
+<% end %>

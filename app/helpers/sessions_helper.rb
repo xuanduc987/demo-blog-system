@@ -37,6 +37,11 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end
 
+  def can_comment_on?(entry)
+    return false if !logged_in? || entry.nil?
+    current_user?(entry.user) || entry.user.followers.include?(current_user)
+  end
+
   def store_location
     session[:forwarding_url] = request.url if request.get?
   end

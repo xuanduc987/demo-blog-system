@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
   end
   resources 'entries', only: [:create, :destroy, :show]
+  resources 'comments', only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
   root 'static_pages#home'

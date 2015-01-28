@@ -76,6 +76,15 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "associated comments should be destroyed" do
+    @user.save
+    entry = @user.entries.create!(title: "Temp", content:"wa")
+    @user.comments.create!(entry_id: entry.id, content: "Sad")
+    assert_difference 'Comment.count', -1 do
+      @user.destroy
+    end
+  end
+
   test "should follow and unfollow a user" do
     duc = users(:duc)
     other  = users(:other)
