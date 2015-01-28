@@ -4,16 +4,16 @@ one:
   title: "No prob"
   content: MyText
   created_at: <%= 10.minutes.ago %>
-  user_id: :duc
+  user: duc
 
 two:
   title: "No prob two"
   content: MyText
   created_at: <%= 1.hour.ago %>
-  user_id: :duc
+  user: duc
 
 most_recent:
+  title: "yeah"
   content: "holy hell"
   created_at: <%= Time.zone.now %>
-  user_id: :duc
-
+  user: duc
